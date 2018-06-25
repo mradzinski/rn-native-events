@@ -27,7 +27,7 @@ public class RNEventEmitterModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "RNEventEmitterModule";
+        return "RNEventEmitter";
     }
 
     public static RNEventEmitterModule getMainEventEmitter(ReactApplicationContext context) {
