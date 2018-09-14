@@ -85,27 +85,31 @@ public class RNEventEmitterModule extends ReactContextBaseJavaModule {
 
     private WritableArray fromObjectArray(Object[] args) {
         WritableArray array = Arguments.createArray();
-        for (Object arg : args) {
-            if (arg == null) {
-                array.pushNull();
-            } else if (arg instanceof Boolean) {
-                array.pushBoolean((Boolean) arg);
-            } else if (arg instanceof Integer) {
-                array.pushInt((Integer) arg);
-            } else if (arg instanceof Double) {
-                array.pushDouble((Double) arg);
-            } else if (arg instanceof Float) {
-                array.pushDouble((double) ((Float) arg));
-            } else if (arg instanceof String) {
-                array.pushString((String) arg);
-            } else if (arg instanceof WritableArray) {
-                array.pushArray((WritableArray) arg);
-            } else if (arg instanceof WritableMap) {
-                array.pushMap((WritableMap) arg);
-            } else {
-                throw new IllegalArgumentException("Illegal object type");
+
+        try {
+            for (Object arg : args) {
+                if (arg == null) {
+                    array.pushNull();
+                } else if (arg instanceof Boolean) {
+                    array.pushBoolean((Boolean) arg);
+                } else if (arg instanceof Integer) {
+                    array.pushInt((Integer) arg);
+                } else if (arg instanceof Double) {
+                    array.pushDouble((Double) arg);
+                } else if (arg instanceof Float) {
+                    array.pushDouble((double) ((Float) arg));
+                } else if (arg instanceof String) {
+                    array.pushString((String) arg);
+                } else if (arg instanceof WritableArray) {
+                    array.pushArray((WritableArray) arg);
+                } else if (arg instanceof WritableMap) {
+                    array.pushMap((WritableMap) arg);
+                } else {
+                    throw new IllegalArgumentException("Illegal object type");
+                }
             }
-        }
+        } catch (Exception ignored) { /* no-op */ }
+
         return array;
     }
 
